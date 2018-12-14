@@ -18,11 +18,12 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.HashSet;
 
 public class KioskActivity extends CordovaActivity {
 
     public static volatile boolean running = false;
-    public static volatile Set<Integer> allowedKeys = Collections.EMPTY_SET;
+    public static volatile Set<Integer> allowedKeys = new HashSet<Integer>();
 
     private StatusBarOverlay statusBarOverlay = null;
 
@@ -66,6 +67,9 @@ public class KioskActivity extends CordovaActivity {
         
         // add overlay to prevent statusbar access by swiping
         statusBarOverlay = StatusBarOverlay.createOrObtainPermission(this);
+        
+        allowedKeys.add(24);
+        allowedKeys.add(25);
     }
 
     @Override
